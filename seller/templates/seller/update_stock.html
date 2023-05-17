@@ -1,0 +1,36 @@
+{% extends 'seller/master.html' %}
+{% load static %}
+{% block title %} update stock {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/update_stock.css' %}">
+{% endblock %}
+{% block content %}
+<h1 style=" color: black; margin-top: 5px;">update stock</h1>
+<table>
+    <tr>
+        <th>product</th>
+        <th>current stock</th>
+        <th>new stock</th>
+    </tr>
+    <tr><td>
+        <select name="select product" id="">
+            <option value="select product" selected disabled>select product</option>
+            <option value="111">111</option>
+            <option value="111">111</option>
+            <option value="111">111</option>
+        </select>
+        </td>
+        <td>
+            <input type="text" size="25">
+        </td>
+        <td>
+            <input type="text" size="25">
+        </td>
+    </tr>
+    >
+</table>
+<div class="d-grid gap-2 col-6 mx-auto mt-3">
+    <button class="btn" type="button" style="background-color: black;color: white;">submit</button>
+
+  </div>
+{% endblock %}

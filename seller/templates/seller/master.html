@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/master.css' %}">
+  <style>
+    .side_menu{
+    position: static;
+    width: 100%;
+    height: 100%;
+    margin-left: -10px;
+    box-shadow: 0px 0px 10px black;
+    margin-top: 6px;
+    
+    
+}
+.side_menu center img{
+  height: 60px;
+width: 60px;
+border-radius: 50%;
+margin-top: 15px;
+
+}
+.side_menu center h4{
+color: #1D2951;
+margin-top:3px ;
+}
+.side_menu a{
+  display: block;
+  line-height: 40px;
+  transition: 0.5s;
+  color: #1D2951;
+  border-bottom: 1px solid white;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: -5px;
+  
+}
+.side_menu a:hover{
+  background-color: #4f285c;
+  padding-left: 10px;
+  color: white;
+}
+.side_menu span{
+  margin-left: 6px;
+  font-size: 15px;
+}
+
+
+
+@media (max-width:850px){
+  .side_menu a span{
+      display: none;
+      
+  }
+  .side_menu center{
+      display: none;
+  }
+  .side_menu{
+      width: 100px;
+  }
+  .side_menu .icon_image{
+      line-height: 80px;
+      margin-left: 20px;
+      width: 30px;
+      height: 30px;
+  }
+  .side_menu h5{
+    margin-right: 5px;
+    color: slategray;
+  }
+}
+footer{
+  box-shadow: 0 0 0 0.2rem rgba(9, 18, 28, 0.5)
+} 
+  
+  </style>
+  {% block header %}
+  {% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg  header" style="background-color: #4f285c; border: 1px solid black; ">
+            <div class="container-fluid ">
+              <a class="navbar-brand ms-5 " href="#"><h1><i class="las la-shopping-bag"></i> shoppyfy</h1></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav" style="margin-right: 10%;">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item me-3">
+                    <a class="nav-link active " aria-current="page" href="#"
+                      style="font-weight: 500;"><b>home</b></a>
+                  </li>
+                
+                  
+                 
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <body>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2 col-4">
+            <div class="side_menu">
+              <center>
+                <img src="http://127.0.0.1:8000{{ request.session.seller_photo }}" alt="">
+                <br>
+                <h4>{{ seller.name }}</h4>
+    
+              </center>
+              <br>
+              <a href="{% url 'seller:home' %}"><i class="las la-igloo"></i><span>home</span></a>
+              <a href="{% url 'seller:product_catalogue' %}"><i class="las la-igloo"></i><span>product catalogue</span></a>
+              <a href="{% url 'seller:add_product' %}"><i class="las la-plus-square"></i><span>add product</span></a>
+              <a href="{% url 'seller:change_password' %}"><i class="las la-edit"></i><span>change password</span></a>
+              
+              <a href="{% url 'seller:profile' %}"><i class="las la-user"></i><span>profile</span></a>
+              <a href="{% url 'seller:recent_order' %}"><i class="las la-clock"></i><span>recent orders</span></a>
+              <a href="{% url 'seller:update_stock' %}"><i class="lab la-buffer"></i><span>updated stock</span></a>
+              <a href="{% url 'seller:order_history' %}"><i class="las la-history"></i><span>order history</span></a>
+              <a href="{% url 'seller:logout' %}"><i class="las la-logout"></i><span>log out</span></a>
+    
+            </div>
+    
+    
+    
+          </div>
+          <div class="col-md-10 col-8  main">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </body>
+
+    
+    <footer>
+        <h1 style="background-color: #4f285c; text-align: center; color: white;" >
+            footer
+          </h1>
+    </footer>
+</body>
+</html>

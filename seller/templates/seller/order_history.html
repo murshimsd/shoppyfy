@@ -1,0 +1,49 @@
+{% extends 'seller/master.html' %}
+{% load static %}
+{% block title %} order history {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/order_history.css' %}">
+<style>
+    button {
+        background-color: orange;
+    }
+    .content{
+        
+        width: 90%;
+        box-shadow: 0 0 0 0.2rem rgba(9, 18, 28, 0.5)
+        
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h3 style="margin-left: 30px; margin-top: 10px;">orders</h3>
+<div class="content">
+
+    <table border="2" style="width: 100%; ">
+        <tr>
+            <th>
+                order id
+            </th>
+            <th>customer name</th>
+            <th>order</th>
+            <th>purchasing date</th>
+            <th>total price</th>
+            <th>status</th>
+            <th>payment mode</th>
+            <th>more info</th>
+
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>---</td>
+            <td>jeans</td>
+            <td>april 5,2023</td>
+            <td>$1000</td>
+            <td>delivered</td>
+            <td>---</td>
+            <td><button>view</button></td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

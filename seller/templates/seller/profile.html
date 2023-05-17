@@ -1,0 +1,38 @@
+{% extends 'seller/master.html' %}
+{% load static %}
+{% block title %} profile {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<style>
+  img{
+    height: 300px;
+    width: 400px;
+  }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="profile-container">
+    <h1>Seller Profile</h1>
+    <div class="profile-image">
+      <img src="{{ seller.photo.url }}" alt="Profile Image">
+    </div>
+    <div class="profile-info">
+      <label>Name:</label>
+      <p>{{ seller.name }}</p>
+    </div>
+    <div class="profile-info">
+      <label>Email:</label>
+      <p>{{ seller.e_mail }}</p>
+    </div>
+    <div class="profile-info">
+      <label>address:</label>
+      <p>{{ seller.address }}</p>
+    </div>
+    <div class="profile-info">
+      <label>Phone:</label>
+      <p> {{ seller.phone_no }}</p>
+    </div>
+    
+  </div>
+{% endblock %}

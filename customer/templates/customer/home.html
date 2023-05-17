@@ -1,0 +1,51 @@
+{% extends 'customer/master.html' %}
+{% load static %}
+{% block title %} home {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<style>
+    .imgs {
+        height: 260px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+    a {
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1 class="mt-3">hi {{ request.session.customer_name }}</h1>
+<br>
+<div class="container text-center">
+    <div class="row">
+        {% for product in products %}
+        <div class="col">
+            <a href="">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ product.photo.url }}" class="card-img-top imgs" alt="...">
+                    <div class="card-body">
+                        <h3>{{ product.name }}</h3>
+                        <p>rs :{{ product.price }}</p>
+                        <p> des :{{ product.description }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+       
+
+    </div>
+
+</div>
+
+{% endblock %}
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+{% extends 'ecom_admin/master.html' %}
+{% load static %}
+{% block title %} view seller {% endblock %}
+{% block header %}
+<style>
+    .tag{
+        
+    /* background-color: green; */
+    height: 50px;
+    width: 100%;
+
+    }
+    .tag h3{
+        margin-left: 400px;
+        margin-top: 5px;
+    }
+    .photo{
+        height: 50px;
+        width: 50px;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css/view_seller.css' %}">
+{% endblock %}
+{% block content %}
+<div class="tag">
+   <h3>view seller</h3> 
+</div>
+<div class="content" >
+    <table border="2" style=" border-spacing: 30px; width: 95%; margin-bottom: 10px;margin-top: 10px;margin-left: 10px;" >
+        <tr>
+            <th >s:no</th>
+            <th>name</th>
+            <th>e-mail</th>
+            <th>acc-no</th>
+            <th>ifsc</th>
+            <th>branch</th>
+            <th>company-name</th>
+            <th>phone</th>
+            <th>photo</th>
+            
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>murshid</td>
+            <td>murshimsd08@gmail.com</td>
+            <td>537738393933</td>
+            <td>25262pgdi</td>
+            <td>parappanagadi</td>
+            <td>yo-yo</td>
+            <td>8087986543</td>
+            <td><img class="photo" src="{% static 'images/jeans1.jpg' %}" alt=""></td>
+            
+        </tr>
+    </table>
+</div>
+{% endblock %}

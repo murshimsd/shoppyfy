@@ -1,0 +1,7 @@
+.header h1,b{
+    color: white;
+  }
+  header,footer{
+    box-shadow: 0 0 0 0.2rem rgba(9, 18, 28, 0.5)
+  }
+    

@@ -1,0 +1,29 @@
+.login_dropdown_ul{
+    color: white;
+    font-weight: 700;
+}
+.login_dropdown{
+    font-weight: 700;
+}
+.login_dropdown li{
+    color: black;
+}
+
+.header h1,b{
+    color: white;
+}
+.login_dropdown :hover{
+    color: black;
+}
+.header h1:hover{
+    color: black;
+}
+.header b:hover{
+    color: black;
+}
+.header{
+    box-shadow: 0 0 0 0.2rem rgba(9, 18, 28, 0.5)
+}
+.footer{
+    box-shadow: 0 0 0 0.2rem rgba(9, 18, 28, 0.5)
+}

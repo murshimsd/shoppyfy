@@ -1,0 +1,28 @@
+{% extends 'common/master.html' %}
+{% load static %}
+{% block title %} seller login {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/seller_login.css' %}">
+{% endblock %}
+{% block content %}
+<h6 style="margin-left: 330px; margin-top: 10px;" >seller login</h6>
+
+<form style="margin-bottom: 10px;" method="POST">
+  {{ msg }}
+  {% csrf_token %}
+    <div class="form-group">
+      
+      <label for="email">user name:</label>
+      <input type="text" class="form-control" id="email" placeholder="user name" name="user_name">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+    </div>
+   <button type="submit" class="btn btn-primary" >Submit</button>
+   <h5>if you are not registered ? click below</h5>
+   <a href="{% url 'common:seller_register' %}"><button type="button" class="btn btn-primary" style="margin-bottom: 15px;">sign in</button></a>
+  </form>
+
+  
+{% endblock %}

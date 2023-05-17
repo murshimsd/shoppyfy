@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/master.css' %}">
+
+  {% block header %}
+  
+  {% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg  header" style="background-color: #4f285c; border: 1px solid black; ">
+            <div class="container-fluid ">
+              <a class="navbar-brand ms-5 " href="#"><h1><i class="las la-shopping-bag"></i> shoppyfy</h1></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav" style="margin-right: 10%;">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item me-3">
+                    <a class="nav-link active " aria-current="page" href="{% url 'ecom_admin:home' %}"
+                      style="font-weight: 500;"><b>home</b></a>
+                  </li>
+                  <li class="nav-item me-3">
+                    <a class="nav-link active " aria-current="page" href="{% url 'ecom_admin:approve_seller' %}"
+                      style="font-weight: 500;"><b>approve seller</b></a>
+                  </li>
+                  <li class="nav-item me-3">
+                    <a class="nav-link active " aria-current="page" href="{% url 'ecom_admin:view_seller' %}"
+                      style="font-weight: 500;"><b>view seller</b></a>
+                  </li>
+                  <li class="nav-item me-3">
+                    <a class="nav-link active " aria-current="page" href="{% url 'ecom_admin:view_customer' %}"
+                      style="font-weight: 500;"><b>view customer</b></a>
+                  </li>
+                
+                
+                
+
+                
+                  
+                 
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+    
+    <footer>
+        <h1 style="background-color: #4f285c; text-align: center; color: white;" >
+            footer
+          </h1>
+    </footer>
+</body>
+</html>

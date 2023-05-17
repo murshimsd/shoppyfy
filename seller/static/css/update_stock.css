@@ -1,0 +1,10 @@
+table{
+    background-color: antiquewhite;
+    margin-left: 200px;
+    border: 2px solid black;
+    
+}
+select{
+    background-color: darkslategray;
+    color: white;
+}

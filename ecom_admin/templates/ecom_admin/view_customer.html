@@ -1,0 +1,54 @@
+{% extends 'ecom_admin/master.html' %}
+{% load static %}
+{% block title %} view customer {% endblock %}
+{% block header %}
+<style>
+    .tag{
+        
+    /* background-color: green; */
+    height: 50px;
+    width: 100%;
+
+    }
+    .tag h3{
+        margin-left: 400px;
+        margin-top: 5px;
+    }
+    .photo{
+        height: 50px;
+        width: 50px;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css/view_seller.css' %}">
+{% endblock %}
+{% block content %}
+<div class="tag">
+   <h3>view customer</h3> 
+</div>
+<div class="content" >
+    <table border="2" style=" border-spacing: 30px; width: 95%; margin-bottom: 10px;margin-top: 10px;margin-left: 10px;" >
+        <tr>
+            <th >customer name</th>
+            <th>customer email</th>
+            <th>address</th>
+            <th>gender</th>
+            <th>phone</th>
+            <th>password</th>
+            <th>remove</th>
+            
+        </tr>
+        <tr>
+            <td>aaa</td>
+            
+            <td>murshimsd08@gmail.com</td>
+            <td>malayil</td>
+            <td>male</td>
+            <td>9758543270</td>
+            <td>bbbbb</td>
+            <td><button style="background-color: orange; color: white;">remove</button></td>
+           
+            
+        </tr>
+    </table>
+</div>
+{% endblock %}

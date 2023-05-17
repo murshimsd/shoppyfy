@@ -1,0 +1,12 @@
+.card_rs{
+    color: yellow;
+}
+.card_stock{
+    color: palevioletred;
+}
+.card_img{
+    height:200px ;
+}
+.cards{
+    box-sizing: border-box;
+}

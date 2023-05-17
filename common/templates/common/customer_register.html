@@ -1,0 +1,48 @@
+{% extends 'common/master.html' %}
+{% load static %}
+{% block title %} customer register {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/customer_reg.css' %}">
+{% endblock %}
+{% block content %}
+<h6 style="margin-left: 330px;margin-top: 10px;">customer register</h6>
+<form method="POST" enctype="multipart/form-data">
+    {{ massage }}
+    {% csrf_token %}
+    <div class="container forms">
+        
+        <label for="name"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
+
+        <label for="address"><b>Address</b></label>
+        <input type="text" placeholder="Enter Address" name="address" required>
+
+        <label for="gender"><b>Gender</b></label>
+        <select name="gender" name="gender" required>
+            <option value="" selected disabled>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+       
+        <br>
+
+        <label for="phone"><b>Phone Number</b></label>
+        <input type="text" placeholder="Enter Phone Number" name="phone" required>
+
+        <label for="image">photo:</label>
+        <input type="file" name="photo" id="image">
+
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" required>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <input type="submit" value="Submit">
+
+        <h4>if you have already registered ? </h4>
+        <a href="{% url 'common:customer_login' %}"><button type="button" class="btn btn-primary">login</button></a>
+    </div>
+</form>
+{% endblock %}

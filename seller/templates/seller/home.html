@@ -1,0 +1,10 @@
+
+{% extends 'seller/master.html' %}
+{% load static %}
+{% block title %} home {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+<h1 style=" color: black;">welcome {{ request.session.seller_name }}</h1>  
+{% endblock %}

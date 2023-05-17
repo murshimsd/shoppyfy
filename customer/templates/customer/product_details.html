@@ -1,0 +1,46 @@
+{% extends 'customer/master.html' %}
+{% load static %}
+{% block title %} product details{% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<style>
+    .cart_button{
+        background-color: blue;
+        width: 190px;
+        color: white;
+        border: none;
+        border-radius: 10px;
+    }
+    .cards{
+        box-shadow: 0 0 0 0.2rem rgba(9, 18, 28, 0.5)
+    }
+    .img{
+      height: 300px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h5 style="margin-top: 10px;">
+    product details
+</h5>
+
+<div class="card mb-3 cards" style="max-width: 640px; height: 300px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'images/jeans1.jpg' %}" class="img-fluid rounded-start img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">SCULLERS</h5>
+          <br>
+          <h5>$1100.0</h5>
+          <p>from :<span>zudio</span></p>
+          <p style="margin-bottom: -3px;">seller : <span>murshid</span></p>
+          <button class="cart_button">add to cart</button><label for="" style="margin-left: 10px;">qty</label><input type="text" value="1" size="2">
+          <br><br>
+          <p><span>11</span> products left</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

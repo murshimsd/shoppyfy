@@ -1,0 +1,56 @@
+{% extends 'ecom_admin/master.html' %}
+{% load static %}
+{% block title %} approve seller {% endblock %}
+{% block header %}
+<style>
+    .tag{
+        
+    /* background-color: green; */
+    height: 40px;
+    width: 100%;
+
+    }
+    .tag h3{
+        margin-left: 400px;
+        margin-top: 5px;
+    }
+    .content{
+        width: 95%;
+        
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css/approve_seller.css' %}">
+{% endblock %}
+{% block content %}
+<div class="tag">
+   <h3>approve seller</h3> 
+</div>
+<div class="content" >
+    <table border="2" style=" border-spacing: 30px; width: 100%; margin-left: 10px; margin-top: 10px;margin-bottom: 10px;" >
+        <tr>
+            <th >s:no</th>
+            <th>name</th>
+            <th>e-mail</th>
+            <th>acc-no</th>
+            <th>ifsc</th>
+            <th>branch</th>
+            <th>company-name</th>
+            <th>phone</th>
+            <th>photo</th>
+            <th>action</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>murshid</td>
+            <td>murshimsd08@gmail.com</td>
+            <td>537738393933</td>
+            <td>25262pgdi</td>
+            <td>parappanagadi</td>
+            <td>yo-yo</td>
+            <td>8087986543</td>
+            <td></td>
+            <td>edit/delet</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
