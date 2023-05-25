@@ -1,7 +1,9 @@
+
 from urllib import request
 from django.shortcuts import render , redirect
 from common.models import Customer
 from seller.models import Product , Seller
+from . models import Cart
 
 # Create your views here.
 def home(request) :
@@ -43,13 +45,28 @@ def master(request) :
     return render(request,'customer/master.html')
 
 def my_cart(request) :
-    return render(request,'customer/my_cart.html')
+    cart_items = Cart.objects.filter(customer=request.session['customer'])
+    return render(request,'customer/my_cart.html',{"cart_items":cart_items})
 
 def my_order(request) :
     return render(request,'customer/my_order.html')
 
-def product_details(request) :
-    return render(request,'customer/product_details.html')
+def product_details(request,pid) :
+    products = Product.objects.get(id = pid)
+    msg = ''
+    if request.method == 'POST':
+        stocks = request.POST['stock']
+        cart_exist = Cart.objects.filter(product = pid,customer = request.session['customer']).exists()
+        if not cart_exist :
+
+            cart = Cart(customer_id=request.session['customer'],product_id=pid,stock=stocks)
+            cart.save()
+            return redirect('customer:my_cart')
+        else :
+            msg = 'already in cart'
+
+    
+    return render(request,'customer/product_details.html',{"product":products,"msg":msg})
 
 def profile(request) :
     profile = Customer.objects.get(id=request.session['customer'])
@@ -59,3 +76,25 @@ def logout(request) :
     del request.session['customer']
     request.session.flush()
     return redirect('common:home')
+
+def edit_profile(request) :
+    customer = Customer.objects.get(id=request.session['customer'])
+
+    msg = ''
+    if request.method == 'POST':
+        # new_photo = request.FILES['photo']
+        new_name = request.POST['name']
+        new_address = request.POST['address']
+        new_email = request.POST['email']
+
+        customer.name = new_name
+        customer.email = new_email
+        customer.address = new_address
+        # if new_photo == '':
+        #     customer.photo = customer.photo
+        # else: 
+        #     customer.photo= new_photo
+        customer.save()
+        msg = 'successfully updated'
+    return render(request,'customer/update_form.html',{'customer':customer,'msgs':msg})
+

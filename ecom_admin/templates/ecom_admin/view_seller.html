@@ -39,18 +39,21 @@
             <th>photo</th>
             
         </tr>
+        {% for seller in sellers %}
+
         <tr>
-            <td>1</td>
-            <td>murshid</td>
-            <td>murshimsd08@gmail.com</td>
-            <td>537738393933</td>
-            <td>25262pgdi</td>
-            <td>parappanagadi</td>
-            <td>yo-yo</td>
-            <td>8087986543</td>
-            <td><img class="photo" src="{% static 'images/jeans1.jpg' %}" alt=""></td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ seller.name }}</td>
+            <td>{{ seller.e_mail }}</td>
+            <td>{{ seller.ac_no }}</td>
+            <td>{{ seller.ifsc }}</td>
+            <td>{{ seller.branch }}</td>
+            <td>{{ seller.company_name }}</td>
+            <td>{{ seller.phone_no }}</td>
+            <td><img class="photo" src="{{ seller.photo.url }}" alt=""></td>
             
         </tr>
+        {% endfor %}
     </table>
 </div>
 {% endblock %}

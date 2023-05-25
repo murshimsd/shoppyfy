@@ -3,7 +3,36 @@
 {% block title %} home {% endblock %}
 {% block header %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
+<style>
+    table{
+        box-shadow: 0 0 0 0.2rem rgba(9, 18, 28, 0.5)  
+        
+    }
+    th{
+        border-bottom: 2px solid rgba(9, 18, 28, 0.5);
+        text-align: center;
+    }
+    td{
+        text-align: center;
+    }
+</style>
 {% endblock %}
 {% block content %}
 order
+<table  style="width: 80%;" >
+    <tr>
+    <th>aa</th>
+    <th>bb</th>
+    <th>cc</th>
+    <th>dd</th>
+    <th>ee</th>
+    </tr>
+    <tr>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+    </tr>
+</table>
 {% endblock %}

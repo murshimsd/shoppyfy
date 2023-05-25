@@ -18,6 +18,9 @@
         height: 50px;
         width: 50px;
     }
+    table{
+        width: 80%;
+    }
 </style>
 <link rel="stylesheet" href="{% static 'css/view_seller.css' %}">
 {% endblock %}
@@ -37,18 +40,22 @@
             <th>remove</th>
             
         </tr>
+        {% for customer in customers %}
         <tr>
-            <td>aaa</td>
+            <td>{{ customer.name }}</td>
             
-            <td>murshimsd08@gmail.com</td>
-            <td>malayil</td>
-            <td>male</td>
-            <td>9758543270</td>
-            <td>bbbbb</td>
-            <td><button style="background-color: orange; color: white;">remove</button></td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.address }}</td>
+            <td>{{ customer.gender }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>{{ customer.password }}</td>
+
+            <td><a href="{% url 'ecom_admin:remove_cus' customer.id %}"><input type="button" class="btn btn-primary" value="remove"></a></td>
+            
            
             
         </tr>
+        {% endfor %}
     </table>
 </div>
 {% endblock %}

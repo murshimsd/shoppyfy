@@ -7,17 +7,19 @@
 {% endblock %}
 {% block content %}
 <h6 style="margin-left: 330px; margin-top: 10px;" >admin login</h6>
-<form style="margin-bottom: 10px;">
+<form style="margin-bottom: 10px;" method="POST" >
+  {% csrf_token %}
+  {{ msg }}
     <div class="form-group">
       
-      <label for="email">Email address:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email">
+      <label for="email">User name:</label>
+      <input type="text" class="form-control" name="user_name"  placeholder="user name">
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" placeholder="Enter password">
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
     </div>
-   <a href="#"><button type="button" class="btn btn-primary" >Submit</button></a>
+   <button type="submit" class="btn btn-primary" >Submit</button>
     
   </form>
 {% endblock %}

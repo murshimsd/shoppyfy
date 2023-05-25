@@ -13,6 +13,7 @@
     }
     a {
         text-decoration: none;
+        color: black;
     }
 </style>
 {% endblock %}
@@ -23,17 +24,20 @@
     <div class="row">
         {% for product in products %}
         <div class="col">
-            <a href="">
-                <div class="card" style="width: 18rem;">
+            <a href="{% url 'customer:product_details' product.id %}" >
+                <div class="card" style="width: 15rem;height: 23rem;">
                     <img src="{{ product.photo.url }}" class="card-img-top imgs" alt="...">
                     <div class="card-body">
                         <h3>{{ product.name }}</h3>
-                        <p>rs :{{ product.price }}</p>
-                        <p> des :{{ product.description }}</p>
+                        <p style="margin-top: -13px;">rs - {{ product.price }}</p>
+                        <p style="margin-top: -20px;"> des - {{ product.description }}</p>
+                        <p style="margin-top: -20px;"> seller - {{ product.seller.name }}</p>
+                        
                     </div>
                 </div>
             </a>
         </div>
+        
         {% endfor %}
        
 

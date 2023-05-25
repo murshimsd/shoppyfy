@@ -4,6 +4,7 @@
 {% block title %} seller register {% endblock %}
 {% block header %}
 <link rel="stylesheet" href="{% static 'css/seller_reg.css' %}">
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 {% endblock %}
 {% block content %}
 <h6 style="margin-left: 330px;margin-top: 10px;">seller register</h6>
@@ -20,6 +21,7 @@
   </div>
   <div>
     <label for="email">Email Address</label>
+    <span id="span_email"></span>
     <input type="email" id="email" name="email" required>
   </div>
   <div>
@@ -63,4 +65,34 @@
     <a href="{% url 'common:seller_login' %}"><button type="button" class="btn" style="background-color:#337ab7 ;">login</button></a>
   </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script>
+  $("#email").keyup(function(){
+    $.ajaxSetup({
+                headers: {
+
+                    "X-CSRFToken": '{{ csrf_token }}'
+
+                }
+            })
+            $.ajax({
+              url : "{% url 'common:check_mail_seller' %}",
+              method : 'POST',
+              data : {
+                "seller_mail":$(this).val()
+              },
+              success : function(response){
+                console.log(response.email_exist)
+                let exist = response.email_exist
+                if(exist == true){
+                  $("#span_email").html("existed mail").css({"color":"red","font-size":"larger"})
+                }
+              }
+
+
+            })
+            
+
+  })
+</script>
 {% endblock %}

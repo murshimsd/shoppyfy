@@ -110,3 +110,29 @@ def logout(request) :
     request.session.flush()
     return redirect('common:home')
 
+
+def change_profile(request) :
+     
+     
+     seller = Seller.objects.get(id=request.session['seller'])
+     return render(request,'seller/update_profile.html',{"seller":seller})
+
+def new_profile(request) :
+    msg = ''
+    
+    if request.method == 'POST':
+        print("test")
+        new_name = request.POST['name']
+        new_address = request.POST['address']
+        new_email = request.POST['email']
+        new_phone = request.POST['phone']
+
+        seller = Seller.objects.get(id=request.session['seller'])
+
+        seller.name = new_name
+        seller.address = new_address
+        seller.e_mail = new_email
+        seller.phone_no = new_phone
+        seller.save()
+        msg = 'successfull'    
+    return render(request,'seller/update_profile.html',{'update_msg':msg})

@@ -18,6 +18,10 @@
         width: 95%;
         
     }
+    img{
+        height: 20px;
+        width: 20px;
+    }
 </style>
 <link rel="stylesheet" href="{% static 'css/approve_seller.css' %}">
 {% endblock %}
@@ -26,8 +30,11 @@
    <h3>approve seller</h3> 
 </div>
 <div class="content" >
+    <form action="" method="POST">
     <table border="2" style=" border-spacing: 30px; width: 100%; margin-left: 10px; margin-top: 10px;margin-bottom: 10px;" >
         <tr>
+            {{ msg }}
+            {% csrf_token %}
             <th >s:no</th>
             <th>name</th>
             <th>e-mail</th>
@@ -37,20 +44,24 @@
             <th>company-name</th>
             <th>phone</th>
             <th>photo</th>
-            <th>action</th>
+            <th >action</th>
         </tr>
+        {% for seller in sellers %}
         <tr>
-            <td>1</td>
-            <td>murshid</td>
-            <td>murshimsd08@gmail.com</td>
-            <td>537738393933</td>
-            <td>25262pgdi</td>
-            <td>parappanagadi</td>
-            <td>yo-yo</td>
-            <td>8087986543</td>
-            <td></td>
-            <td>edit/delet</td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ seller.name }}</td>
+            <td>{{ seller.e_mail }}</td>
+            <td>{{ seller.ac_no }}</td>
+            <td>{{ seller.ifsc }}</td>
+            <td>{{ seller.branch }}</td>
+            <td>{{ seller.company_name }}</td>
+            <td>{{ seller.phone_no }}</td>
+            <td><img src="{{ seller.photo.url }}" alt=""></td>
+            <td><a href="{% url 'ecom_admin:approve' seller.id %}"><button type="button" class="btn btn-primary" >approve</button></a>
+                <a href="{% url 'ecom_admin:remove_seller' seller.id %}"><button type="button" class="btn btn-danger" >remove</button></td>
         </tr>
+        {% endfor %}
     </table>
+    </form>
 </div>
 {% endblock %}

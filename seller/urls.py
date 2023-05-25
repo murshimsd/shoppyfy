@@ -14,7 +14,9 @@ urlpatterns = [
     path('recent_order',views.recent_order,name='recent_order'),
     path('update_stock',views.update_stock,name='update_stock'),
     path('profile',views.profile,name='profile'),
-    path('logout',views.logout,name='logout')
+    path('logout',views.logout,name='logout'),
+    path('change_profile',views.change_profile,name='change_profile'),
+    path('new_profile',views.new_profile,name='new_profile')
 
     
 ]

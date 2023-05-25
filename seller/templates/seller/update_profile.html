@@ -1,0 +1,83 @@
+
+{% extends 'seller/master.html' %}
+{% load static %}
+{% block title %} update profile {% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<style>
+    body {
+     font-family: Arial, sans-serif;
+     margin: 20px;
+   }
+   
+   h1 {
+     text-align: center;
+   }
+   
+   form {
+     max-width: 400px;
+     margin: 0 auto;
+   }
+   
+   label {
+     display: block;
+     margin-top: 10px;
+   }
+   
+   input[type="text"],
+   input[type="email"],
+   textarea {
+     width: 100%;
+     padding: 5px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+   }
+   
+   select {
+     width: 100%;
+     padding: 5px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+   }
+   
+   input[type="submit"] {
+     padding: 10px;
+     background-color: #4CAF50;
+     color: #fff;
+     border: none;
+     cursor: pointer;
+     border-radius: 4px;
+   }
+   
+   input[type="submit"]:hover {
+     background-color: #45a049;
+   }
+</style>
+{% endblock %}
+{% block content %}
+<h1>Update Profile</h1>
+  
+<form action="{% url 'seller:new_profile' %}"  method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  
+  
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" value="{{ seller.name }}" required><br><br>
+  
+  <label for="email">address:</label>
+  <input type="text" id="email" name="address" value="{{ seller.address }}" required><br><br>
+  
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email" value="{{ seller.e_mail }}" required><br><br>
+
+  <label for="email">phone:</label>
+  <input type="text" id="email" name="phone" value="{{ seller.phone_no }}" required><br><br>
+  
+  {{ update_msg }}
+  
+  
+  <button>submit  </button>
+  
+</form>
+
+{% endblock %}

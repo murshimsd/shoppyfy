@@ -11,5 +11,8 @@ urlpatterns = [
     path('seller_register',views.seller_register,name='seller_register'),
     path('seller_login',views.seller_login,name='seller_login'),
     path('master',views.master,name='master'),
-    path('admin_login',views.admin_login,name='admin_login')
+    path('admin_login',views.admin_login,name='admin_login'),
+    path('check_mail',views.check_mail,name='check_mail'),
+    path('check_mail_seller',views.check_mail_seller,name='check_mail_seller'),
+
 ]

@@ -16,6 +16,7 @@ class Seller(models.Model) :
     ifsc = models.CharField(max_length = 20, default = '')
     branch= models.CharField(max_length = 30, default = '')
     ac_no = models.CharField(max_length = 30, default = '')
+    status = models.CharField(max_length=30,default="pending")
 
     class Meta:
         db_table = 'seller_tb'

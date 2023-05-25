@@ -5,6 +5,8 @@ from django.conf import settings
 
 from common.models import Seller
 from common.models import Customer
+from ecom_admin.models import Admin
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -160,4 +162,31 @@ def master(request) :
 
 
 def admin_login(request) :
-    return render(request,'common/admin_login.html')
+    msg = ''
+    if request.method == 'POST':
+        u_name = request.POST['user_name']
+        passwords = request.POST['password']
+
+        try:
+            admins = Admin.objects.get(user_id = u_name,password=passwords)
+            request.session['admins'] = admins.id
+            msg = 'correct'
+            return redirect('ecom_admin:home')
+        except:
+            msg = 'incorrect'
+
+    return render(request,'common/admin_login.html',{"msg":msg})
+
+def check_mail(request):
+    email_ajax = request.POST['customerEmail'] #recieved from ajax
+    exist = Customer.objects.filter(email=email_ajax).exists()
+    return JsonResponse({"email_exist":exist})
+
+def check_mail_seller(request):
+    email_ajax = request.POST['seller_mail'] #recieved from ajax
+    exist = Seller.objects.filter(e_mail=email_ajax).exists()
+    return JsonResponse({"email_exist":exist})
+
+
+
+

@@ -34,7 +34,9 @@
         <input type="file" name="photo" id="image">
 
         <label for="email"><b>Email</b></label>
-        <input type="email" placeholder="Enter Email" name="email" required>
+        <span id="span_mail"></span>
+        <input type="email" placeholder="Enter Email" name="email" id="email" required >
+        
 
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
@@ -45,4 +47,38 @@
         <a href="{% url 'common:customer_login' %}"><button type="button" class="btn btn-primary">login</button></a>
     </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script>
+    $("#email").keyup(function(){
+        $.ajaxSetup({
+                headers: {
+
+                    "X-CSRFToken": '{{ csrf_token }}'
+
+                }
+            })
+
+            $.ajax({
+
+                url : "{% url 'common:check_mail' %}",
+                method : 'POST',
+                data : {
+                    "customerEmail" : $(this).val()
+
+                },
+                success : function(response){
+                    let exist = response.email_exist
+                    if (exist == true){
+
+                        $("#span_mail").html('email already exist').css({"color":"red","font-size":"larger","margin-right":"300px"})
+
+                    }
+                  
+                }
+
+
+
+            })
+    })
+</script>
 {% endblock %}
