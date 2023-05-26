@@ -4,12 +4,16 @@ from django.shortcuts import render , redirect
 from common.models import Seller
 
 from seller.models import Product
+from .decorator import auth_seller
 
 # Create your views here.
+@auth_seller
 def home(request) :
 
     return render(request,'seller/home.html')
 
+
+@auth_seller
 def change_password(request) :
 
     msgs = ''
@@ -40,6 +44,8 @@ def change_password(request) :
 
 
 
+
+@auth_seller
 def add_product(request) :
         msg = ''
         if request.method == 'POST' :
@@ -82,24 +88,31 @@ def master(request) :
 
 
 
+
+@auth_seller
 def order_history(request) :
     return render(request,'seller/order_history.html')
 
 
 
+
+@auth_seller
 def product_catalogue(request) :
     products = Product.objects.filter(seller=request.session['seller'])
     return render(request,'seller/product_catalogue.html',{'products':products})
 
 
+@auth_seller
 def recent_order(request) :
     return render(request,'seller/recent_order.html')
 
 
+@auth_seller
 def update_stock(request) :
     return render(request,'seller/update_stock.html')
 
 
+@auth_seller
 def profile(request) :
     seller = Seller.objects.get(id=request.session['seller'])
     return render(request,'seller/profile.html',{"seller":seller})
@@ -110,13 +123,14 @@ def logout(request) :
     request.session.flush()
     return redirect('common:home')
 
-
+@auth_seller
 def change_profile(request) :
      
      
      seller = Seller.objects.get(id=request.session['seller'])
      return render(request,'seller/update_profile.html',{"seller":seller})
 
+@auth_seller
 def new_profile(request) :
     msg = ''
     

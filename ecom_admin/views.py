@@ -28,7 +28,7 @@ def approvesell(request,sid):
         [seller.e_mail]
     )
   
-    return redirect("ecom_admin:approve_seller")
+    return redirect("ecom_admin:view_seller")
 
 def remove_seller(request,s_id):
     seller = Seller.objects.get(id=s_id)

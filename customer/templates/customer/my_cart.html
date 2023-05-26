@@ -3,6 +3,7 @@
 {% block title %} home {% endblock %}
 {% block header %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <style>
    
     .container {
@@ -75,10 +76,10 @@
                 <h3 class="card-title">{{ item.product.name }}</h3>
                 <h5>{{ item.product.price }}</h5>
 
-                <label for="">qty:</label><input type="text" value="{{ item.stock }}" size="1" name="stock">
+                <label for="">qty:</label><input type="number" value="{{ item.stock }}" size="1" name="stock" max="{{ item.product.stock }}" item_id="{{ item.product.id }}" item_price="{{ item.product.price }}" min=1>
                 <h6 class="mt-3">supplier : <span>{{ item.product.seller.name }}</span></h6>
                 <hr>
-                <h6 class="total">total:<span>1010</span></h6>
+                <h6 class="total">total:<span id="total{{ item.product.id }}" class="single_item_total">{% widthratio item.product.price 1 item.stock %}</span></h6>
                 <button type="button" class="btn btn-danger">close</button>
             </div>
         </div>
@@ -98,17 +99,72 @@
         </div>
         <hr>
         <br>
-        <span class="bill-total">Total: $5010.0</span>
+        <span class="bill-total" >Total: <span id="grand_total">{{ grand_total }}</span></span>
         <hr>
-        <span class="bill-total">Shipping: $100.00</span>
+        <span class="bill-total">shipping : $100.00</span>
         <hr>
-        <h4>total : 5110</h4>
+        <h4><span id="grand_shpping_total">total : {{ grand_total|add:100 }}</span></h4>
         <br>
         <button type="button" class="btn btn-outline-success">Success</button>
 
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 </body>
+
+<script>
+    $("input").change(function(){
+
+        let price = $(this).attr('item_price') //these attributes are already sets in stocks input box so we can acces products id , price here//
+        let id = $(this).attr("item_id")
+        let stock = $(this).val()  //we can hav the value of input .which means number of stocks we want //
+        $.ajaxSetup({
+                headers: {
+
+                    "X-CSRFToken": '{{ csrf_token }}'
+
+                }
+            })
+
+            $.ajax({
+                url : "{% url 'customer:update_cart' %}",
+                method : "POST",
+                data : {
+                    "p_id" : id,
+                    "p_stock" : stock
+
+                },
+                success : function(response){
+                    if(response.status_code == 200){
+                        let selected_span_id = 'total'+id /*we need a span id where we want to show the total . 
+                        in this case we have already set id as 'toatal'{{product.id}} . he are we also did same with a string total
+                        concatanate with the id which is we are already fetched from above */
+                    
+                        console.log(selected_span_id)
+                        let selected_span = document.getElementById(selected_span_id)/* we are fetching span id where 'total'+product id which means the variable we stored */
+
+                        let selected_product_total = parseInt(stock) * parseFloat(price)
+                        selected_span.innerHTML = selected_product_total
+
+                        let total = document.getElementsByClassName("single_item_total")
+                        let total_sum = 0
+                        for(let i = 0 ;i < total.length;i++){
+                            total_sum += parseFloat(total[i].innerHTML)
+                        }
+                        let grand_total_span = document.getElementById("grand_total")
+                        grand_total_span.innerHTML = total_sum
+                        let grand_shipping_total_span= document.getElementById("grand_shpping_total")
+                        grand_shipping_total_span.innerHTML = parseFloat(grand_total_span.innerHTML)+ 100
+                    }
+                   
+                }
+                
+            })
+            
+
+
+    })
+</script>
 
 </html>
 
