@@ -130,29 +130,32 @@
                 url : "{% url 'customer:update_cart' %}",
                 method : "POST",
                 data : {
-                    "p_id" : id,
+                    "p_id" : id, /* pass the id,stock to function for update database stock when we change the stock */
                     "p_stock" : stock
 
                 },
                 success : function(response){
                     if(response.status_code == 200){
-                        let selected_span_id = 'total'+id /*we need a span id where we want to show the total . 
-                        in this case we have already set id as 'toatal'{{product.id}} . he are we also did same with a string total
-                        concatanate with the id which is we are already fetched from above */
+                        let selected_span_id = 'total'+id /* if we want to show the total of span fetch span id as product id 
+                        which is we put in the id of span . we cannot fetch as usual because there is looping*/
                     
                         console.log(selected_span_id)
-                        let selected_span = document.getElementById(selected_span_id)/* we are fetching span id where 'total'+product id which means the variable we stored */
+                        let selected_span = document.getElementById(selected_span_id)/* we are fetching span id where 'total'+product id from  the variable we stored */
 
                         let selected_product_total = parseInt(stock) * parseFloat(price)
-                        selected_span.innerHTML = selected_product_total
+                        selected_span.innerHTML = selected_product_total /* stored total in that span*/
 
-                        let total = document.getElementsByClassName("single_item_total")
+                        let total = document.getElementsByClassName("single_item_total")/*here we give class name for span so we can access all product total price by this class name .pick the total we are already saved in span into variable
+                        we need total of all products in bill . so we using total in loop . adding every product total into a new variable.
+                        then placed it into bill's total span*/
                         let total_sum = 0
                         for(let i = 0 ;i < total.length;i++){
                             total_sum += parseFloat(total[i].innerHTML)
                         }
                         let grand_total_span = document.getElementById("grand_total")
                         grand_total_span.innerHTML = total_sum
+                        
+                        /* add total with the shipping*/
                         let grand_shipping_total_span= document.getElementById("grand_shpping_total")
                         grand_shipping_total_span.innerHTML = parseFloat(grand_total_span.innerHTML)+ 100
                     }
