@@ -2,7 +2,7 @@
 from urllib import request
 from django.shortcuts import render , redirect
 from common.models import Seller
-
+from django.http import JsonResponse
 from seller.models import Product
 from .decorator import auth_seller
 
@@ -109,7 +109,8 @@ def recent_order(request) :
 
 @auth_seller
 def update_stock(request) :
-    return render(request,'seller/update_stock.html')
+    product = Product.objects.filter(seller=request.session['seller'])
+    return render(request,'seller/update_stock.html',{"products":product})
 
 
 @auth_seller
@@ -150,3 +151,28 @@ def new_profile(request) :
         seller.save()
         msg = 'successfull'    
     return render(request,'seller/update_profile.html',{'update_msg':msg})
+
+def updating_stock(request):
+    p_id = request.POST['pp_id']
+    # new_sto = request.POST['pp_new']
+
+    selected_product = Product.objects.get(id=p_id)
+    
+   
+    return JsonResponse({"status_code":200,"current_stock":selected_product.stock})
+
+def new_stock(request,pid):
+    msg = ''
+    if request.method == 'POST':
+       
+        news = request.POST['new_stock']
+        product = Product.objects.get(id=pid)
+        product.stock = int(news)
+        product.save()
+        msg = 'updated successfully'
+    else :
+        pass
+
+    return render(request,'seller/update_stock.html',{"msg":msg})
+
+

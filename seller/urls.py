@@ -16,7 +16,9 @@ urlpatterns = [
     path('profile',views.profile,name='profile'),
     path('logout',views.logout,name='logout'),
     path('change_profile',views.change_profile,name='change_profile'),
-    path('new_profile',views.new_profile,name='new_profile')
+    path('new_profile',views.new_profile,name='new_profile'),
+    path("updating_stock",views.updating_stock,name="updating_stock"),
+    path('new_stock/<int:pid>',views.new_stock,name='new_stock')
 
     
 ]

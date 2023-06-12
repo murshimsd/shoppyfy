@@ -3,6 +3,8 @@
 {% block title %} update stock {% endblock %}
 {% block header %}
 <link rel="stylesheet" href="{% static 'css/update_stock.css' %}">
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
 {% endblock %}
 {% block content %}
 <h1 style=" color: black; margin-top: 5px;">update stock</h1>
@@ -12,25 +14,73 @@
         <th>current stock</th>
         <th>new stock</th>
     </tr>
-    <tr><td>
-        <select name="select product" id="">
-            <option value="select product" selected disabled>select product</option>
-            <option value="111">111</option>
-            <option value="111">111</option>
-            <option value="111">111</option>
-        </select>
+    <tr>
+        <td>
+            <select name="select product" id="sel_product">
+                <option value="select product" selected disabled>select product</option>
+                {% for product in products %}
+                <option value="{{product.id}}">{{ product.name }}</option>
+                
+                {% endfor %}
+
+            </select>
         </td>
         <td>
-            <input type="text" size="25">
+            <input type="text" size="25" value="" id="c_stock">
         </td>
         <td>
-            <input type="text" size="25">
+            {% for product in products %}
+                <form action="{% url 'seller:new_stock' product.id %}" method='POST'>
+                    {% endfor %}
+                    {% csrf_token %}
+                    <input type="text" size="25" value="" name="new_stock">
+
+                    
         </td>
+        <tr>
+            <td>
+                {{ msg }}
+            </td>
+        </tr>
+
     </tr>
-    >
+    
 </table>
 <div class="d-grid gap-2 col-6 mx-auto mt-3">
-    <button class="btn" type="button" style="background-color: black;color: white;">submit</button>
+    <input type="submit" style="background-color: black;color: white;" value="submit">
+</div>
+</form>
 
-  </div>
+<script>
+    $("#sel_product").change(function () {
+        ppid = $(this).val()
+
+        $.ajaxSetup({
+            headers: {
+
+                "X-CSRFToken": '{{ csrf_token }}'
+
+            }
+        })
+        $.ajax({
+            url: "{% url 'seller:updating_stock' %}",
+            method: "POST",
+            data: {
+                "pp_id": ppid
+
+            },
+            success: function (response) {
+                if (response.status_code == 200) {
+                    current_stock = response.current_stock;
+                    console.log(current_stock)
+                    $("#c_stock").val(current_stock);
+
+                }
+            }
+        })
+
+
+
+    })
+</script>
 {% endblock %}
